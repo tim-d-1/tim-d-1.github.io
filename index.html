@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccination.ng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0b0c2a;
+            color: #fff;
+        }
+
+        .color-hl {
+            color: #17c2ec;
+        }
+
+        nav {
+            background: #101236;
+        }
+
+        nav .nav-link,
+        nav .navbar-brand {
+            color: #fff !important;
+        }
+
+        .hero {
+            padding: 60px 0;
+        }
+
+        .hero-img {
+            background-color: #17c2ec;
+            border-radius: 25px;
+        }
+
+        .btn-cta {
+            padding: 20pc;
+        }
+
+        .btn-custom {
+            background-color: #17c2ec;
+            color: #fff;
+            border-radius: 25px;
+        }
+
+        .btn-custom-ext {
+            background-color: unset;
+            border: #17c2ec solid 2px;
+        }
+
+        .card {
+            background: rgba(196, 196, 196, 0.05);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+        }
+
+        .footer {
+            background: #1a1d4a;
+            color: #aaa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .feature-box {
+            background: #1a1d4a;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input,
+        select {
+            border-radius: 10px !important;
+        }
+
+        .symptom-icon-left,
+        .symptom-icon-right {
+            position: absolute;
+            max-height: 150%;
+            max-width: 35%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .symptom-icon-left {
+            left: -10%;
+        }
+
+        .symptom-icon-right {
+            right: -10%;
+        }
+
+        @media (max-width: 1024px) {
+            img[src="assets/image.png"] {
+            display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5">
+        <a class="navbar-brand fw-bold" href="#">Vaccination.ng</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+            <a class="btn btn-custom ms-3">Check Status</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero container text-center text-md-start">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h4 class="color-hl pb-4">Get Vaccinated. Boost your Immune System</h4>
+                <h1 class="fw-bold">COVID-19 Vaccination <br>
+                    Got Easier With,<br>
+                    <span class="color-hl">Vaccination.ng</span>
+                </h1>
+                <p class="py-4">Vaccination.ng will help you find the nearest centre for vaccination, in all 36 states
+                    in Nigeria.
+                </p>
+                <a href="#" class="btn px-4 py-2 btn-custom me-2">Get Vaccine</a>
+                <a href="#" class="btn px-4 py-2 btn-custom btn-custom-ext">Help Centre</a>
+            </div>
+            <div class="col-md-6 text-center my-3">
+                <img src="assets/vaccine.png" class="img-fluid hero-img" alt="vaccine">
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule -->
+    <section class="container my-5">
+        <div class="p-3 card">
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" placeholder="Ikeja Lagos, Nigeria">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Date</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Vaccine Type</label>
+                    <select class="form-control">
+                        <option>Moderna</option>
+                        <option>Pfizer</option>
+                        <option>AstraZeneca</option>
+                        <option>Sinovac</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end mx-auto">
+                    <button type="submit" class="btn btn-custom w-100">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <main>
+        <!-- Why Vaccinate -->
+        <section class="container text-center my-5">
+            <h2 class="fw-bold">Why get vaccinated today?</h2>
+            <div class="row mt-4 g-3">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <h5>Protects your immune system</h5>
+                        <p>Helps defend against viruses and reduces severity of illness.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <h5>Minimize the spread</h5>
+                        <p>Reduces community transmission and saves lives.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <h5>Protect yourself</h5>
+                        <p>Lower risk of severe infection, hospitalization or death.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Symptoms -->
+        <section class="container text-center">
+            <h2 class="fw-bold color-hl">COVID-19 Symptoms</h2>
+            <p>Watch out for these symptoms and take precautions.</p>
+
+            <div class="container d-flex flex-wrap align-items-center justify-content-center">
+                <div class="col-md-3 d-flex flex-column color-hl text-start">
+                    <div class="p-3 my-4 card rounded shadow-sm">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">High Fever</p>
+                        <img src="assets/image.png" alt="Fever icon" class="symptom-icon-right">
+                    </div>
+                    <div class="p-3 my-4 card rounded shadow-sm text-start">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">Loss of sense of smell</p>
+                        <img src="assets/image.png" alt="Smell loss icon" class="symptom-icon-right">
+                    </div>
+                    <div class="p-3 my-4 card rounded shadow-sm text-start">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">Dry cough</p>
+                        <img src="assets/image.png" alt="Cough icon" class="symptom-icon-right">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <img class="img-fluid mx-auto d-block" src="assets/sick-person.png" alt="sick-person"
+                        style="min-height: 50%;">
+                </div>
+
+                <div class="col-md-3 d-flex flex-column">
+                    <div class="p-3 my-4 card rounded shadow-sm text-end">
+                        <img src="assets/image.png" alt="Taste loss icon" class="symptom-icon-left">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">Loss of sense of taste</p>
+                    </div>
+                    <div class="p-3 my-4 card rounded shadow-sm text-end">
+                        <img src="assets/image.png" alt="Breathing icon" class="symptom-icon-left">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">Difficulty breathing</p>
+                    </div>
+                    <div class="p-3 my-4 card rounded shadow-sm text-end">
+                        <img src="assets/image.png" alt="Sore throat icon" class="symptom-icon-left">
+                        <p class="fw-semibold mb-0 color-hl mx-auto">Sore throat</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="container my-5">
+            <h2 class="text-center fw-bold">What our Patients Think</h2>
+            <div class="row text-center mt-4">
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p>"Been stressing about a close centre to get the COVID-19 vaccine, until I tried
+                            Vaccination.ng"
+                        </p>
+                        <h6 class="fw-bold">Oyindamola Maja</h6>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p>"Got my vaccine very close to my house. So easy, without stress."</p>
+                        <h6 class="fw-bold">Okeowo Lekan</h6>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <p>"Been stressing about a close centre to get the COVID-19 vaccine, until I tried
+                            Vaccination.ng"
+                        </p>
+                        <h6 class="fw-bold">Kafaru Temitope</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Vaccination.ng</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
