@@ -2,10 +2,9 @@ let draggedItem = null;
 let clone = null;
 let touchTimeout = null;
 let isDragging = false;
-
 const mobilePressThreshold = 150;
 
-// Make a task draggable (desktop + touch)
+
 function makeDraggable(task) {
     // Desktop drag
     task.setAttribute('draggable', true);
@@ -16,6 +15,7 @@ function makeDraggable(task) {
     task.addEventListener('dragend', () => {
         draggedItem = null;
         task.classList.remove('dragging');
+        saveTasks();
     });
 
     // Mobile touch
@@ -37,7 +37,7 @@ function makeDraggable(task) {
 
     task.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
-        if (e.cancelable) e.preventDefault(); // prevent scrolling only when possible
+        if (e.cancelable) e.preventDefault();
         moveClone(e.touches[0]);
     });
 
@@ -61,9 +61,9 @@ function makeDraggable(task) {
 
         draggedItem = null;
         isDragging = false;
+        saveTasks();
     });
 
-    // Cancel the timeout if the user lifts the finger before long-press
     task.addEventListener('touchcancel', () => {
         clearTimeout(touchTimeout);
         if (clone) clone.remove();
@@ -73,13 +73,11 @@ function makeDraggable(task) {
     });
 }
 
-// Move the floating clone
 function moveClone(touch) {
     clone.style.left = touch.pageX - clone.offsetWidth / 2 + 'px';
     clone.style.top = touch.pageY - clone.offsetHeight / 2 + 'px';
 }
 
-// Get the task after the cursor for reordering
 function getDragAfterElement(container, y) {
     const draggableElements = [...container.querySelectorAll('.task:not(.dragging)')];
     return draggableElements.reduce((closest, child) => {
@@ -96,7 +94,7 @@ function getDragAfterElement(container, y) {
 // Make existing tasks draggable
 document.querySelectorAll('.task').forEach(makeDraggable);
 
-// Sections drop logic for desktop
+// Desktop section drop
 document.querySelectorAll('section').forEach(section => {
     section.addEventListener('dragover', e => {
         e.preventDefault();
@@ -106,7 +104,6 @@ document.querySelectorAll('section').forEach(section => {
     });
 });
 
-// Form submission to add a new task
 document.getElementById('task-form').addEventListener('submit', e => {
     e.preventDefault();
     const input = document.getElementById('new-task');
@@ -124,4 +121,62 @@ document.getElementById('task-form').addEventListener('submit', e => {
     makeDraggable(newTask);
     document.querySelector('section').appendChild(newTask);
     input.value = '';
+    saveTasks();
+});
+
+
+function saveTasks() {
+    const sections = document.querySelectorAll('section');
+    const data = [];
+
+    sections.forEach(section => {
+        const sectionTitle = section.querySelector('h6')?.textContent || '';
+        const tasks = [...section.querySelectorAll('.task')].map(task => {
+            return {
+                text: task.querySelector('span').textContent,
+                checked: task.querySelector('input[type="checkbox"]').checked
+            };
+        });
+        data.push({ title: sectionTitle, tasks });
+    });
+
+    localStorage.setItem('tasksData', JSON.stringify(data));
+}
+
+function loadTasks() {
+    const data = JSON.parse(localStorage.getItem('tasksData') || '[]');
+    if (!data.length) return;
+
+    const containerSections = document.querySelectorAll('section');
+
+    data.forEach((sectionData, index) => {
+        const section = containerSections[index];
+        if (!section) return;
+
+        section.querySelectorAll('.task').forEach(t => t.remove());
+
+        sectionData.tasks.forEach(taskData => {
+            const newTask = document.createElement('label');
+            newTask.className = 'task';
+            newTask.innerHTML = `
+                <input type="checkbox" ${taskData.checked ? 'checked' : ''}>
+                <div class="checkmark"></div>
+                <span>${taskData.text}</span>
+            `;
+            makeDraggable(newTask);
+            section.appendChild(newTask);
+        });
+    });
+}
+
+// Save checkbox changes
+document.addEventListener('change', e => {
+    if (e.target.matches('.task input[type="checkbox"]')) {
+        saveTasks();
+    }
+});
+
+// Load tasks on page load
+window.addEventListener('DOMContentLoaded', () => {
+    loadTasks();
 });
