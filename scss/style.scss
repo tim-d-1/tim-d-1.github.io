@@ -1,0 +1,97 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body, html {
+    width: 100vw;   
+}
+
+main>section {
+    @extend .row;
+    @extend .g-2;
+
+    h6 {
+        text-transform: uppercase;
+        color: #D1A28B;
+        font-size: 0.8rem !important;
+    }
+}
+
+form[action="add"] {
+    padding-left: 0;
+    padding-right: 0; 
+}
+
+.task {
+    @extend .form-check;
+    @extend .p-3;
+
+    display: flex;
+    align-items: center;
+
+    background: #F3EFEE;
+    border: none;
+    border-radius: 15px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: rgb(243, 239, 238) solid 2px;
+    cursor: pointer;
+    gap: 1rem;
+
+    &:has(input[type="checkbox"]:checked) {
+        background-color: unset;
+        border: #aaa solid 2px;
+        box-shadow: none;
+    }
+
+    input[type="checkbox"] {
+        margin: 0;
+        display: none;
+    }
+
+    .checkmark {    
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid #bbb;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    input[type="checkbox"]:checked+.checkmark {
+        background: #777;
+        border-color: #777;
+    }
+
+    .checkmark::after {
+        content: "✔";
+        font-size: 14px;
+        color: white;
+        display: none;
+    }
+
+    input[type="checkbox"]:checked+.checkmark::after {
+        display: block;
+    }
+
+    span {
+        font-size: 16px;
+        color: #333;
+        transition: all 0.2s ease;
+    }
+
+    input[type="checkbox"]:checked~span {
+        color: #aaa;
+    }
+}
