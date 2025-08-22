@@ -18,6 +18,8 @@ main>section {
     @extend .row;
     @extend .g-2;
 
+    transition: background 0.2s ease;
+
     h6 {
         text-transform: uppercase;
         color: #D1A28B;
@@ -45,6 +47,7 @@ form[action="add"] {
     border: rgb(243, 239, 238) solid 2px;
     cursor: pointer;
     gap: 1rem;
+    transition: opacity 0.2s ease;
 
     &:has(input[type="checkbox"]:checked) {
         background-color: unset;
