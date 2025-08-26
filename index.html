@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaccination.ng</title>
+    <title>Dashboard App</title>
 
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
@@ -15,55 +14,72 @@
 </head>
 
 <body>
-    <main class="container-fluid p-4 row g-4">
-        <h1>Today</h1>
-        <section>
-            <h6>Design</h6>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Create icons for a dashboard</span>
-            </label>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Plan your meal</span>
-            </label>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Prepare a design presentation</span>
-            </label>
-        </section>
-        <section>
-            <h6>Personal</h6>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Review daily goals before sleeping. Add some new if time permits</span>
-            </label>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Stretch for 15 minutes</span>
-            </label>
-        </section>
-        <section>
-            <h6>House</h6>
-            <label class="task">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <span>Water indoor plants</span>
-            </label>
-        </section>
+    <!-- 🔹 LOGIN PAGE -->
+    <div id="login-page" class="d-flex vh-100 align-items-center justify-content-center">
+        <div class="card p-4 shadow-lg" style="width: 400px;">
+            <h3 class="mb-3 text-center" id="form-title">Login</h3>
+            <form id="auth-form">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" minlength="6" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" id="submit-btn">Login</button>
+            </form>
+            <p class="mt-3 text-center">
+                <span id="toggle-text">Don't have an account?</span>
+                <a href="#" id="toggle-link">Sign up</a>
+            </p>
+        </div>
+    </div>
+    <!-- 🔹 APP LAYOUT -->
+    <div id="app" class="d-flex hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar p-3 vh-100" style="width:250px;">
+            <h4 class="mb-4">Dashboard</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="#todo" class="nav-link" data-section="todo">ToDo</a></li>
+                <li class="nav-item"><a href="#analytics" class="nav-link" data-section="analytics">Analytics</a></li>
+                <li class="nav-item"><a href="#people" class="nav-link" data-section="people">People</a></li>
+                <li class="nav-item"><a href="#products" class="nav-link" data-section="products">Products</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
+            </ul>
+        </aside>
 
-        <form id="task-form" class="d-flex g-3 mt-5">
-            <input type="text" class="form-control me-3" id="new-task" placeholder="Write a task...">
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form>
-    </main>
 
-    <script src="script.js"></script>
+        <!-- Main -->
+        <main class="flex-grow-1 p-4">
+            <!-- Topbar -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <button id="theme-toggle" class="btn btn-outline-secondary">🌙</button>
+            </div>
+
+            <!-- Sections -->
+            <section id="todo-section" class="section">
+                <!-- 🔹 ToDo Manager goes here -->
+            </section>
+
+            <section id="analytics-section" class="section d-none">
+                <!-- 🔹 Analytics charts + tables -->
+            </section>
+
+            <section id="people-section" class="section d-none">
+                <!-- 🔹 People API cards -->
+            </section>
+
+            <section id="products-section" class="section d-none">
+                <!-- 🔹 Products placeholder -->
+            </section>
+        </main>
+    </div>
+
+    <!-- 🔹 JS (Bootstrap, Chart.js, and your scripts: auth.js, main.js, todo.js, analytics.js, people.js) -->
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/todo.js"></script>
 </body>
 
 </html>
