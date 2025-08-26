@@ -11864,8 +11864,40 @@ body {
   align-items: center;
 }
 
-body, html {
+[data-bs-theme=dark] .sidebar {
+  background-color: var(--bs-dark-bg, #1e1e1e);
+  color: var(--bs-light);
+}
+[data-bs-theme=dark] .sidebar .nav-link {
+  color: var(--bs-light);
+}
+[data-bs-theme=dark] .sidebar .nav-link:hover {
+  background: var(--bs-secondary-bg);
+}
+
+.sidebar {
+  background-color: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
+  border-right: 1px solid var(--bs-border-color);
+}
+.sidebar .nav-link {
+  color: var(--bs-body-color);
+}
+.sidebar .nav-link:hover {
+  background: var(--bs-light);
+}
+
+#app {
+  width: 100%;
+}
+
+body,
+html {
   width: 100vw;
+}
+
+.hidden {
+  display: none !important;
 }
 
 main > section {
@@ -11885,11 +11917,10 @@ form[action=add] {
 .task {
   display: flex;
   align-items: center;
-  background: #F3EFEE;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  border: rgb(243, 239, 238) solid 2px;
+  box-shadow: 0 2px 6px var(--bs-primary-bg-subtle);
+  border: var(--bs-border-color) solid 2px;
   cursor: pointer;
   gap: 1rem;
   transition: opacity 0.2s ease;
