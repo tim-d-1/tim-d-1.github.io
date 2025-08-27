@@ -4,6 +4,55 @@ let touchTimeout = null;
 let isDragging = false;
 const mobilePressThreshold = 250;
 
+document.getElementById('task-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const input = document.getElementById('new-task');
+    const value = input.value.trim();
+    if (!value) return;
+
+    const newTask = document.createElement('label');
+    newTask.className = 'task d-flex';
+    newTask.innerHTML = `
+                <input type="checkbox">
+                <div class="checkmark"></div>
+                <span>${value}</span>
+                <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
+            `;
+
+    makeDraggable(newTask);
+    document.getElementById('tasks-other').appendChild(newTask);
+    input.value = '';
+    saveTasks();
+});
+
+
+function loadTasks() {
+    const data = JSON.parse(localStorage.getItem('tasksData') || '[]');
+    if (!data.length) return;
+
+    const containerSections = document.querySelectorAll('.task-section');
+
+    data.forEach((sectionData, index) => {
+        const section = containerSections[index];
+        if (!section) return;
+
+        section.querySelectorAll('.task').forEach(t => t.remove());
+
+        sectionData.tasks.forEach(taskData => {
+            const newTask = document.createElement('label');
+            newTask.classList = "task d-flex";
+            newTask.innerHTML = `
+                <input type="checkbox" ${taskData.checked ? 'checked' : ''}>
+                <div class="checkmark"></div>
+                <span>${taskData.text}</span>
+                <button class="btn btn-sm ms-auto btn-outline-danger delete-btn">🗑️</button>
+            `;
+            makeDraggable(newTask);
+            section.appendChild(newTask);
+        });
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     loadTasks();
 });
@@ -16,10 +65,10 @@ function makeDraggable(task) {
         saveTasks();
     });
 
-    const editBtn = task.querySelector('.edit-btn');
-    editBtn.addEventListener('click', function (e) {
+    const span = task.querySelector('span');
+    span.addEventListener('click', function (e) {
         e.stopPropagation();
-        enableEdit(e.target.nextElementSibling);
+        enableEdit(span);
     });
 
     // Desktop drag
@@ -32,6 +81,33 @@ function makeDraggable(task) {
         draggedItem = null;
         task.classList.remove('dragging');
         saveTasks();
+    });
+}
+
+function enableEdit(span) {
+    const currentText = span.textContent;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = currentText;
+    input.className = "form-control form-control-sm";
+
+    // Replace span with input
+    span.replaceWith(input);
+    input.focus();
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const newSpan = document.createElement("span");
+            newSpan.className = "task-text flex-grow-1";
+            newSpan.textContent = input.value.trim() || currentText;
+            newSpan.addEventListener('click', function (e) {
+                e.stopPropagation();
+                enableEdit(span);
+            });
+            input.replaceWith(newSpan);
+
+            saveTasks();
+        }
     });
 }
 
@@ -67,29 +143,6 @@ document.querySelectorAll('.task-section').forEach(section => {
     });
 });
 
-document.getElementById('task-form').addEventListener('submit', e => {
-    e.preventDefault();
-    const input = document.getElementById('new-task');
-    const value = input.value.trim();
-    if (!value) return;
-
-    const newTask = document.createElement('label');
-    newTask.className = 'task d-flex flex-row-reverse';
-    newTask.innerHTML = `
-                <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
-                <button class="btn btn-sm btn-outline-secondary ms-auto edit-btn">✏️</button>
-                <span>${value}</span>
-                <input type="checkbox">
-                <div class="checkmark"></div>
-            `;
-
-    makeDraggable(newTask);
-    document.getElementById('tasks-other').appendChild(newTask);
-    input.value = '';
-    saveTasks();
-});
-
-
 function saveTasks() {
     const sections = document.querySelectorAll('.task-section');
     const data = [];
@@ -106,57 +159,6 @@ function saveTasks() {
     });
 
     localStorage.setItem('tasksData', JSON.stringify(data));
-}
-
-function loadTasks() {
-    const data = JSON.parse(localStorage.getItem('tasksData') || '[]');
-    if (!data.length) return;
-
-    const containerSections = document.querySelectorAll('.task-section');
-
-    data.forEach((sectionData, index) => {
-        const section = containerSections[index];
-        if (!section) return;
-
-        section.querySelectorAll('.task').forEach(t => t.remove());
-
-        sectionData.tasks.forEach(taskData => {
-            const newTask = document.createElement('label');
-            newTask.classList = "task d-flex flex-row-reverse";
-            newTask.innerHTML = `
-                <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
-                <button class="btn btn-sm btn-outline-secondary ms-auto edit-btn">✏️</button>
-                <span>${taskData.text}</span>
-                <input type="checkbox" ${taskData.checked ? 'checked' : ''}>
-                <div class="checkmark"></div>
-            `;
-            makeDraggable(newTask);
-            section.appendChild(newTask);
-        });
-    });
-}
-
-function enableEdit(span) {
-    const currentText = span.textContent;
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = currentText;
-    input.className = "form-control form-control-sm";
-
-    // Replace span with input
-    span.replaceWith(input);
-    input.focus();
-
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            const newSpan = document.createElement("span");
-            newSpan.className = "task-text flex-grow-1";
-            newSpan.textContent = input.value.trim() || currentText;
-            input.replaceWith(newSpan);
-
-            saveTasks();
-        }
-    });
 }
 
 // Save checkbox changes

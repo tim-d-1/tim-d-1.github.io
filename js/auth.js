@@ -1,3 +1,5 @@
+// TODO: SECURE PAGE
+
 const authForm = document.getElementById("auth-form");
 const loginPage = document.getElementById("login-page");
 const app = document.getElementById("app");
