@@ -777,7 +777,7 @@ progress {
   --bs-breakpoint-xxl: 1400px;
 }
 
-.row, main > section {
+.row, section {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
@@ -786,7 +786,7 @@ progress {
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
-.row > *, main > section > * {
+.row > *, section > * {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -963,12 +963,12 @@ progress {
   --bs-gutter-y: 0.25rem;
 }
 
-.g-2, main > section,
+.g-2, section,
 .gx-2 {
   --bs-gutter-x: 0.5rem;
 }
 
-.g-2, main > section,
+.g-2, section,
 .gy-2 {
   --bs-gutter-y: 0.5rem;
 }
@@ -11900,10 +11900,10 @@ html {
   display: none !important;
 }
 
-main > section {
+section {
   transition: background 0.2s ease;
 }
-main > section h6, main > section .h6 {
+section h6, section .h6 {
   text-transform: uppercase;
   color: #D1A28B;
   font-size: 0.8rem !important;
@@ -11924,6 +11924,9 @@ form[action=add] {
   cursor: pointer;
   gap: 1rem;
   transition: opacity 0.2s ease;
+}
+[data-bs-theme=dark] .task > span {
+  color: var(--bs-light);
 }
 .task:has(input[type=checkbox]:checked) {
   background-color: unset;

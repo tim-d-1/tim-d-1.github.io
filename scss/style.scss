@@ -52,7 +52,7 @@ html {
     display: none !important;
 }
 
-main>section {
+section {
     @extend .row;
     @extend .g-2;
 
@@ -80,6 +80,9 @@ form[action="add"] {
     border: none;
     border-radius: 15px;
 
+    [data-bs-theme="dark"] & > span {
+        color: var(--bs-light);
+    }
     box-shadow: 0 2px 6px var(--bs-primary-bg-subtle);
     border: var(--bs-border-color) solid 2px;
     cursor: pointer;
