@@ -1,22 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
-    toggleTheme();
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
+    toggleTheme(theme);
 });
 
 document.querySelectorAll("[data-section]").forEach(link => {
     link.addEventListener("click", e => {
         e.preventDefault();
-        document.querySelectorAll(".section").forEach(sec => sec.classList.add("d-none"));
-        const sectionId = link.dataset.section + "-section";
-        document.getElementById(sectionId).classList.remove("d-none");
+        document.querySelectorAll("main>section").forEach(sec => {
+            if ((link.dataset.section + "-section") === sec.id) {
+                document.getElementById(sec.id).style.setProperty('display','block');
+                return;
+            }
+            sec.style.setProperty('display','none');
+        });
     });
 });
 
-function toggleTheme(isToggle) {
-    let theme = localStorage.getItem("theme") || "light";
+function toggleTheme(systemChoice, isToggle) {
+    let theme = localStorage.getItem("theme");
 
-    if (isToggle) {
-        theme = theme === "light" ? "dark" : "light";
-    }
+    theme = isToggle
+        ? (theme === "light" ? "dark" : "light")
+        : (theme || systemChoice);
 
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-bs-theme", theme);
@@ -28,5 +33,5 @@ function toggleTheme(isToggle) {
 let themeToggle = document.getElementById("theme-toggle");
 
 themeToggle.addEventListener("click", () => {
-    toggleTheme(true);
+    toggleTheme(null, true);
 });

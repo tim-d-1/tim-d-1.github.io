@@ -12,9 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
 </head>
-
 <body>
-    <button id="theme-toggle" class="btn btn-outline-secondary position-fixed top-0 end-0 mt-2 me-1">🌙</button>
+    <button id="theme-toggle" class="btn btn-outline-secondary position-fixed top-0 end-0 mt-1 me-1">🌙</button>
     <!-- 🔹 LOGIN PAGE -->
     <div id="login-page" class="d-flex vh-100 align-items-center justify-content-center">
         <div class="card p-4 shadow-lg" style="width: 400px;">
@@ -39,7 +38,7 @@
     <!-- 🔹 APP LAYOUT -->
     <div id="app" class="d-flex hidden">
         <!-- Sidebar -->
-        <aside class="col-2 sidebar p-3 vh-100 d-flex flex-column" style="width:250px;">
+        <aside class="col-2 sidebar h-100 p-3 d-flex flex-column position-fixed">
             <h4 class="mb-4">Dashboard</h4>
             <ul class="nav flex-column">
                 <li class="nav-item"><a href="#todo" class="nav-link" data-section="todo">ToDo</a></li>
@@ -50,21 +49,20 @@
             </ul>
         </aside>
 
-        <!-- Main -->
         <main class="col-10 flex-grow-1 p-4">
-            <!-- Sections -->
-            <section id="todo-section" class="section container-fluid p-4 row g-4">
+
+            <section id="todo-section">
                 <h1>Today</h1>
                 <section class="task-section">
                     <h6>Design</h6>
                     <!-- 
-                <label class="task d-flex flex-row-reverse" draggable="true">
-                <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
-                <button class="btn btn-sm btn-outline-secondary ms-auto edit-btn">✏️</button>
-                <span>grgrgr</span>
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                </label>
+                    <label class="task d-flex flex-row-reverse" draggable="true">
+                        <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
+                        <button class="btn btn-sm btn-outline-secondary ms-auto edit-btn">✏️</button>
+                        <span>grgrgr</span>
+                        <input type="checkbox">
+                        <div class="checkmark"></div>
+                    </label>
                     -->
                 </section>
                 <section class="task-section">
@@ -83,15 +81,36 @@
                 </form>
             </section>
 
-            <section id="analytics-section" class="section d-none">
+            <section id="analytics-section">
                 <!-- 🔹 Analytics charts + tables -->
             </section>
 
-            <section id="people-section" class="section d-none">
-                <!-- 🔹 People API cards -->
+            <section id="people-section">
+                <section id="people-section" class="section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>People Directory</h2>
+                        <div class="d-flex">
+                            <input type="text" id="search-people" class="form-control me-2"
+                                placeholder="Search people...">
+                            <button class="btn btn-outline-secondary" id="sort-people">
+                                <i class="bi bi-sort-alpha-down"></i> Sort
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row" id="people-cards-container">
+                        <!-- Cards will be loaded here dynamically -->
+                        <div class="col-12 text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading people data...</p>
+                        </div>
+                    </div>
+                </section>
             </section>
 
-            <section id="products-section" class="section d-none">
+            <section id="products-section">
                 <!-- 🔹 Products placeholder -->
             </section>
         </main>
@@ -100,6 +119,7 @@
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
     <script src="js/todo.js"></script>
+    <script src="js/people.js"></script>
 </body>
 
 </html>
