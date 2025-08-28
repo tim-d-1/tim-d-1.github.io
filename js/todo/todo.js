@@ -22,7 +22,7 @@ document.getElementById('task-form').addEventListener('submit', e => {
     saveTasks();
 });
 
-function enableEdit(span) {
+export function enableEdit(span) {
     const currentText = span.textContent;
     const input = document.createElement("input");
     input.type = "text";
