@@ -35,3 +35,19 @@ let themeToggle = document.getElementById("theme-toggle");
 themeToggle.addEventListener("click", () => {
     toggleTheme(null, true);
 });
+
+const sidebar = document.querySelector('.sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 992) {
+    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  }
+});
+    

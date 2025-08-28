@@ -1,5 +1,15 @@
 {
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://gr0tesque-end.github.io/",
   "dependencies": {
     "bootstrap": "^5.3.7"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": ""
   }
 }

@@ -6,34 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard App</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 </head>
+
 <body>
-    <button id="theme-toggle" class="btn btn-outline-secondary position-fixed top-0 end-0 mt-1 me-1">🌙</button>
+    <div class="top-bar position-fixed top-0 end-0 mt-1 me-1 d-flex">
+        <button id="theme-toggle" class="btn btn-outline-secondary">🌙</button>
+        <button id="sidebarToggle" class="btn btn-outline-secondary d-lg-none">☰</button>
+    </div>
     <!-- 🔹 LOGIN PAGE -->
     <div id="login-page" class="d-flex vh-100 align-items-center justify-content-center">
-        <div class="card p-4 shadow-lg" style="width: 400px;">
-            <h3 class="mb-3 text-center" id="form-title">Login</h3>
-            <form id="auth-form">
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control" minlength="6" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100" id="submit-btn">Login</button>
-            </form>
-            <p class="mt-3 text-center">
-                <span id="toggle-text">Don't have an account?</span>
-                <a href="#" id="toggle-link">Sign up</a>
-            </p>
-        </div>
+            <div class="card p-4 shadow-lg" style="width: 400px;">
+                <h3 class="mb-3 text-center" id="form-title">Login</h3>
+                <form id="auth-form">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" minlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" id="submit-btn">Login</button>
+                </form>
+                <p class="mt-3 text-center">
+                    <span id="toggle-text">Don't have an account?</span>
+                    <a href="#" id="toggle-link">Sign up</a>
+                </p>
+            </div>
     </div>
     <!-- 🔹 APP LAYOUT -->
     <div id="app" class="d-flex hidden">
@@ -45,6 +50,7 @@
                 <li class="nav-item"><a href="#analytics" class="nav-link" data-section="analytics">Analytics</a></li>
                 <li class="nav-item"><a href="#people" class="nav-link" data-section="people">People</a></li>
                 <li class="nav-item"><a href="#products" class="nav-link" data-section="products">Products</a></li>
+                <li class="nav-item"><a href="#settings" class="nav-link" data-section="null">Settings</a></li>
                 <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">Logout</a></li>
             </ul>
         </aside>
@@ -82,44 +88,64 @@
             </section>
 
             <section id="analytics-section">
-                <!-- 🔹 Analytics charts + tables -->
+                <h2>Sales Analytics</h2>
+
+                <!-- Charts -->
+                <div class="d-flex pa-5 g-3 flex-column">
+                    <canvas id="salesByDayChart"></canvas>
+                    <canvas id="leadsByDayChart"></canvas>
+                    <canvas id="repeatPurchasesChart"></canvas>
+                    <canvas id="revenueByMonthChart"></canvas>
+                    <canvas id="salesByManagerChart"></canvas>
+                </div>
+                <!-- Tables -->
+                <h3>Revenue by Manager</h3>
+                <table id="managersTable" class="display"></table>
+
+                <h3>Low-turnover Products</h3>
+                <table id="productsTable" class="display"></table>
             </section>
 
             <section id="people-section">
-                <section id="people-section" class="section">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>People Directory</h2>
-                        <div class="d-flex">
-                            <input type="text" id="search-people" class="form-control me-2"
-                                placeholder="Search people...">
-                            <button class="btn btn-outline-secondary" id="sort-people">
-                                <i class="bi bi-sort-alpha-down"></i> Sort
-                            </button>
-                        </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>People Directory</h2>
+                    <div class="d-flex">
+                        <input type="text" id="search-people" class="form-control me-2" placeholder="Search people...">
+                        <button class="btn btn-outline-secondary" id="sort-people">
+                            <i class="bi bi-sort-alpha-down"></i> Sort
+                        </button>
                     </div>
+                </div>
 
-                    <div class="row" id="people-cards-container">
-                        <!-- Cards will be loaded here dynamically -->
-                        <div class="col-12 text-center">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <p class="mt-2">Loading people data...</p>
+                <div class="row" id="people-cards-container">
+                    <!-- Cards will be loaded here dynamically -->
+                    <div class="col-12 text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
                         </div>
+                        <p class="mt-2">Loading people data...</p>
                     </div>
-                </section>
+                </div>
+
             </section>
 
             <section id="products-section">
-                <!-- 🔹 Products placeholder -->
+                <!-- Products -->
             </section>
         </main>
     </div>
 
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/todo.js"></script>
+    <script src="js/todo/todo.js" type="module"></script>
+    <script src="js/todo/drag.js" type="module"></script>
     <script src="js/people.js"></script>
+    <script src="js/analytics.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
