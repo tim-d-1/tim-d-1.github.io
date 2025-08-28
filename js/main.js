@@ -13,7 +13,7 @@ document.querySelectorAll("[data-section]").forEach(link => {
                 return;
             }
             sec.style.setProperty('display', 'none');
-            if (sec.id == 'todo') document.getElementById('todo-controls').style.setProperty('display', 'none');
+            if (sec.id == 'todo-section') document.getElementById('todo-controls').style.setProperty('display', 'none');
         });
     });
 });
@@ -38,11 +38,10 @@ themeToggle.addEventListener("click", () => {
     toggleTheme(null, true);
 });
 
-let sidebar = document.querySelector('.sidebar');
+const sidebar = document.querySelector('.sidebar');
 const sidebarToggle = document.getElementById('sidebarToggle');
 
 sidebarToggle.addEventListener('click', () => {
-    sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('open');
 });
 
