@@ -13,23 +13,23 @@ checklist
 - Збереження у `localStorage`. ✅
 
 3. Sales Analytics (дані з JSON)
-    1. **Продажі по днях** (line chart)
+    1. **Продажі по днях** (line chart) ✅
         - групуємо по `date` → сумуємо `amount`.
-    1. **Ліди по днях** (bar chart)
+    1. **Ліди по днях** (bar chart) ✅
         - рахуємо кількість записів, де `isLead: true`.
-    1. **Повторні покупки** (circle chart)
+    1. **Повторні покупки** (circle chart) ✅
         - шукаємо `customerId`, групуємо по кількості замовлень (скільки разів клієнт купляв у магазині)
-    2. **Оборот (Revenue)** (line chart)
+    2. **Оборот (Revenue)** (line chart) ✅
         - сума всіх `amount` по місяцях.
-    1. **Продажі по менеджерах** (radar chart)
+    1. **Продажі по менеджерах** (radar chart) ✅
         - групуємо по `manager`, сумуємо `amount`.
 
-    1. **Дохід по менеджерах**
+    1. **Дохід по менеджерах** ✅
         - Колонки: Manager | Orders | Revenue | Avg Check
         - Orders = кількість записів
         - Revenue = сума `amount`
         - Avg Check = Revenue ÷ Orders
-    2. **Товари з низьким обігом**
+    2. **Товари з низьким обігом** ✅
         - Колонки: Product | Units | Revenue | Turnover
         - Units = кількість продажів товару
         - Revenue = сума `amount`
