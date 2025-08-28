@@ -34,8 +34,18 @@ body {
     }
 }
 
-.top-bar>* {
-    @extend .me-1;
+#todo-controls {
+    display: none;
+}
+
+.top-bar {
+    &>.btn {
+        max-width: 3rem;
+        max-height: 3rem;
+    }
+    &>* {
+        @extend .me-1;
+    }
 }
 
 .sidebar {

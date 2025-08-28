@@ -7,14 +7,20 @@ let touchTimeout = null;
 let isDragging = false;
 const mobilePressThreshold = 250;
 
+// put event binding in there
+// this due to this function being called for each task
+// therefore not needing to call another ForEach()
 export function makeDraggable(task) {
+    // add event for deleting
     const deleteBtn = task.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', function (event) {
         event.stopPropagation();
+        // deleting
         task.remove();
         saveTasks();
     });
 
+    // add event for editing
     const span = task.querySelector('span');
     span.addEventListener('click', function (e) {
         e.stopPropagation();
