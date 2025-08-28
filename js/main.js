@@ -38,10 +38,11 @@ themeToggle.addEventListener("click", () => {
     toggleTheme(null, true);
 });
 
-const sidebar = document.querySelector('.sidebar');
+let sidebar = document.querySelector('.sidebar');
 const sidebarToggle = document.getElementById('sidebarToggle');
 
 sidebarToggle.addEventListener('click', () => {
+    sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('open');
 });
 
