@@ -34,17 +34,38 @@ body {
     }
 }
 
+.top-bar>* {
+    @extend .me-1;
+}
+
 .sidebar {
     width: 15%;
     background-color: var(--bs-secondary-bg);
     color: var(--bs-body-color);
     border-right: 1px solid var(--bs-border-color);
+    z-index: 10;
 
     .nav-link {
         color: var(--bs-body-color);
 
         &:hover {
             background: var(--bs-light);
+        }
+    }
+
+    @media (max-width: 992px) {
+        & {
+            // bootstrap lg breakpoint
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            transform: translateX(-100%);
+        }
+
+        &.open {
+            transform: translateX(0); // slide in when open
         }
     }
 }
@@ -63,6 +84,12 @@ main {
         @extend .p-4;
         @extend .g-4;
         display: none;
+    }
+
+    @media (max-width: 992px) {
+        & {
+            margin-left: 0;
+        }
     }
 }
 
@@ -87,6 +114,7 @@ form[action="add"] {
     padding-left: 0;
     padding-right: 0;
 }
+
 
 .task {
     @extend .form-check;
