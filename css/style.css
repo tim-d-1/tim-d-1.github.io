@@ -11886,6 +11886,14 @@ body {
   background: var(--bs-secondary-bg);
 }
 
+#todo-controls {
+  display: none;
+}
+
+.top-bar > .btn {
+  max-width: 3rem;
+  max-height: 3rem;
+}
 .sidebar {
   width: 15%;
   background-color: var(--bs-secondary-bg);

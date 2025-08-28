@@ -8,10 +8,12 @@ document.querySelectorAll("[data-section]").forEach(link => {
         e.preventDefault();
         document.querySelectorAll("main>section").forEach(sec => {
             if ((link.dataset.section + "-section") === sec.id) {
-                document.getElementById(sec.id).style.setProperty('display','block');
+                document.getElementById(sec.id).style.setProperty('display', 'block');
+                if (sec.id == 'todo-section') document.getElementById('todo-controls').style.setProperty('display', 'block');
                 return;
             }
-            sec.style.setProperty('display','none');
+            sec.style.setProperty('display', 'none');
+            if (sec.id == 'todo') document.getElementById('todo-controls').style.setProperty('display', 'none');
         });
     });
 });
@@ -40,14 +42,13 @@ const sidebar = document.querySelector('.sidebar');
 const sidebarToggle = document.getElementById('sidebarToggle');
 
 sidebarToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('open');
+    sidebar.classList.toggle('open');
 });
 
 document.addEventListener('click', (e) => {
-  if (window.innerWidth <= 992) {
-    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-      sidebar.classList.remove('open');
+    if (window.innerWidth <= 992) {
+        if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+            sidebar.classList.remove('open');
+        }
     }
-  }
 });
-    

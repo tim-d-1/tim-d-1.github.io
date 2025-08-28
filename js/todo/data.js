@@ -45,12 +45,44 @@ export function saveTasks() {
     localStorage.setItem('tasksData', JSON.stringify(data));
 }
 
+let currentFilter = "all";
+
+function applyFilter() {
+    document.querySelectorAll(".task").forEach(task => {
+        const isChecked = task.querySelector('input[type="checkbox"]').checked;
+
+        if (currentFilter === "completed" && !isChecked) {
+            task.classList.remove('d-flex');
+            task.classList.add('d-none');
+        } else if (currentFilter === "pending" && isChecked) {
+            task.classList.remove('d-flex');
+            task.classList.add('d-none');
+        } else {
+            task.classList.remove('d-none');
+            task.classList.add('d-flex');
+        }
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     loadTasks();
+    applyFilter();
 });
 
 document.addEventListener('change', e => {
     if (e.target.matches('.task input[type="checkbox"]')) {
         saveTasks();
     }
+    applyFilter();
 });
+
+document.querySelectorAll('#todo-controls>button').forEach(b => b.addEventListener("click", e => {
+    const btn = e.target;
+    currentFilter = btn.dataset.filter;
+
+    document.querySelectorAll("#todo-controls>button")
+        .forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    applyFilter();
+}));

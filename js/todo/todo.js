@@ -1,6 +1,9 @@
 import { makeDraggable } from "./drag.js";
 import { loadTasks, saveTasks } from "./data.js";
 
+// See 'drag.js' for deleting & even binding
+
+// adding
 document.getElementById('task-form').addEventListener('submit', e => {
     e.preventDefault();
     const input = document.getElementById('new-task');
@@ -22,6 +25,7 @@ document.getElementById('task-form').addEventListener('submit', e => {
     saveTasks();
 });
 
+// editing 
 export function enableEdit(span) {
     const currentText = span.textContent;
     const input = document.createElement("input");
