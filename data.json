@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Olivia Harris",
+        "access_right": "admin",
+        "password_hash": "bb36c8b28a7b0cb788f1250cc8549074aaefc14625ca9d8e29c5af868e9f87fc",
+        "salt": "f8e6799968c1e818e35d80146a36effe"
+    },
+    {
+        "id": 2,
+        "name": "John Doe",
+        "access_right": "admin",
+        "password_hash": "37ba7b55c3838873a0ea4f96397cd31373426d22fbd017d3aec0c66bac93a189",
+        "salt": "670e72544fd58f41fc76e9fcf491427e"
+    },
+    {
+        "id": 3,
+        "name": "Jane Smith",
+        "access_right": "user",
+        "password_hash": "cc440d249db6b3a0098ebe00760f5e57438e49de2d74275e2817a5ff963fe730",
+        "salt": "c1753378c48a068d494a1fbb9698e5b5"
+    },
+    {
+        "id": 4,
+        "name": "Mike Johnson",
+        "access_right": "user",
+        "password_hash": "2bdcc94098e2988bb07af755b45e84ae5c946135573443dad079db3a511ffced",
+        "salt": "d8687476b60f2722bdcd94517b1dcf3c"
+    },
+    {
+        "id": 5,
+        "name": "Alice Brown",
+        "access_right": "user",
+        "password_hash": "0ef1a25854cc652ced2152f6df3bb01a940cdbc502f026286d4a32da51895048",
+        "salt": "b97f6c0d0f1d4c813badf81423ba5298"
+    },
+    {
+        "id": 6,
+        "name": "Tom Lee",
+        "access_right": "admin",
+        "password_hash": "f3992a9caa45d8eb1767a2c51c465a0a64f723117c6209c8d62fae70899e7710",
+        "salt": "81ef1890139a5388555f022ca09c15fd"
+    },
+    {
+        "id": 7,
+        "name": "Emma Davis",
+        "access_right": "user",
+        "password_hash": "2d21a43a6d694f019f898283cea2e8a844b901ff77850ab32b1a952f39056779",
+        "salt": "89b22225911e37a85d400c9cd6baa5f4"
+    },
+    {
+        "id": 8,
+        "name": "Chris Wilson",
+        "access_right": "user",
+        "password_hash": "704ec198b7c956426b506dabb73398275d3684965b731dae265be20213bd14d7",
+        "salt": "a34b899dff76928504246c0325f781a9"
+    },
+    {
+        "id": 9,
+        "name": "Sophia Taylor",
+        "access_right": "user",
+        "password_hash": "69f93b6c1ee9e730c5f7b8510ad59f8ee0a1e21a66079383a07c588a0fff653b",
+        "salt": "686c59c4d82d470d34533634f105b8a2"
+    },
+    {
+        "id": 10,
+        "name": "Daniel White",
+        "access_right": "user",
+        "password_hash": "0dab79263be3f8aae179d9181ece6bc3435f2fbfe4c13e3bb871b568eb7dc301",
+        "salt": "bab38e02caaf61294ee25ad917ec4e6a"
+    }
+]
