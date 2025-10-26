@@ -25,7 +25,7 @@ jobs:
         run: npm install -g sass
 
       - name: Compile SCSS
-        run: sass --no-source-map scss/main.scss css/style.css
+        run: sass --no-source-map scss/style.scss css/style.css
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
