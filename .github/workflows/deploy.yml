@@ -15,13 +15,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install Sass
-        run: sudo apt-get install -y sass # Installs the Dart Sass compiler
+        
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Sass (Dart Sass)
+        run: npm install -g sass
 
       - name: Compile SCSS
-        # This command finds all .scss files in 'scss/'
-        # and compiles them to .css files in 'assets/css/'
         run: sass --no-source-map scss/main.scss css/style.css
 
       - name: Upload artifact
